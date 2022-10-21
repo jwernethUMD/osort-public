@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<form class="fixed-top shadow row d-flex flex-row p-3 pb-0 bg-primary" method="post" action="/">
+  <div class="input-group mb-3 w-25 col-sm">
+    <span class="input-group-text" id="inputGroup-sizing-default">Osu! ID</span>
+    <input type="text" value="{{id}}" class="form-control" type="text" name="playerID" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+  </div>
+  <div class="input-group mb-3 w-25 col-sm">
+      <label class="input-group-text" for="inputGroupSelect01">Sort By</label>
+      <select class="form-select" id="inputGroupSelect01" type="text" name="stat">
+        <option selected>Select Map Property...</option>
+        <option>Circle Size</option>
+        <option>HP Drain</option>
+        <option>OD</option>
+        <option>Approach Rate</option>
+        <option>BPM</option>
+        <option>Star Rating</option>
+        <option>Score</option>
+        <option>PP</option>
+      </select>
+  </div>
+  <div class="col-sm">
+    <button class="btn btn-dark" type="submit">Sort</button>
+  </div>
+</form>
+<table class="table table-striped" style="margin-top: 5rem">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Title</th>
+      <th scope="col">{{statType}}</th>
+      <th scope="col">Mods</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for data in sortData %}
+      <tr>
+        <th scope="row">{{data[0]}}.</th>
+        <td><a href="{{data[5]}}" style="color: inherit; text-decoration: inherit;"> {{data[3]}}</a></td>
+        <td>{{data[2]}}</td>
+        <td>{{data[4]}}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
